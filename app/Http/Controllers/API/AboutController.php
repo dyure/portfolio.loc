@@ -58,5 +58,6 @@ class AboutController extends Controller
         $about->photo = $name;
         $about->cv = $namecv;
         $about->save();
+        //dd('photo: ' . $name . ' cv: ' . $namecv);
     }
 }

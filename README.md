@@ -48,6 +48,13 @@ php artisan make:model About -m
 создать контроллер: php artisan make:controller API/AboutController
 установить sweetalert2 компонент: npm install sweetalert2
 установить intervention/image: composer require intervention/image
+создать каталог /public/img/upload
 в контроллере AboutController.php не работает проверка на существование загруженного файла и поэтому отключена. загрузка файла, при этом работает.
 
 15 feb 2023*****************************************************************************************************************
+Создание страницы Service
+создать модель: php artisan make:model Service -m
+дополнить файл /database/migrations/...services_table.php полями и выполнить миграцию: php artisan migrate
+создать фабрику php artisan make:factory ServiceFactory
+скорректировать файл /database/seeders/DatabaseSeeder.php и запустить команду php artisan db:seed
+создать контроллер: php artisan make:controller API/ServiceController
