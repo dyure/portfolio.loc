@@ -29,11 +29,11 @@
         <div class="login__body">
             <p class="text-danger" v-if="error">{{ error }}</p>
             <form @submit.prevent="login">
-                <input type="email" placeholder="Enter your email" v-model="form.email" />
+                <input class="input_auth" type="email" placeholder="Enter your email" v-model="form.email" />
                 <br>
-                <input type="password" placeholder="Enter your password" v-model="form.password" />
+                <input class="input_auth" type="password" placeholder="Enter your password" v-model="form.password" />
                 <br>
-                <input type="submit" value="Login" class="submit"/>
+                <input type="submit" value="Login" class="input_auth submit"/>
             </form>
         </div>
     </div>
@@ -61,7 +61,7 @@
         height: 100%;
         flex-wrap: wrap;
     }
-    input {
+    .input_auth {
         background: rgba(228, 232, 243, .8);
         border: none;
         color: rgba(80, 80, 80, 1);
@@ -72,8 +72,8 @@
         outline: none;
         transition: background-color 0.4s;
     }
-    input:hover,
-    input:focus {
+    .input_auth:hover,
+    .input_auth:focus {
         background: rgba(255, 255, 255, .8);
     }
     .submit {
