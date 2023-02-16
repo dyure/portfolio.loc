@@ -5,6 +5,7 @@
     let services = ref([])
     const showModal = ref(false)
     const hideModal = ref(true)
+    const editMode = ref(true)
     let form = ref({
         name : '',
         icon : '',
@@ -27,6 +28,8 @@
 
     const closeModal = () => {
         showModal.value = !hideModal.value
+        form.value = ({})
+        editMode.value = false
     }
 
     const createService = async () => {
@@ -39,6 +42,49 @@
                     title: 'Service add successfully'
                 })
             })
+    }
+
+    const editModal = (service) => {
+        editMode.value = true
+        showModal.value = !showModal.value
+        form.value = service
+    }
+
+    const updateService = async () => {
+        await axios.post('/api/update_service/' + form.value.id, form.value)
+            .then (() => {
+                getServices()
+                closeModal()
+                toast.fire({
+                    icon: 'success',
+                    title: 'Service update successfully'
+                })
+            })
+    }
+
+    const deleteService = (id) => {
+        Swal.fire({
+            title: 'Are you shure?',
+            text: "You can't go back",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        })
+        .then((result) => {
+            if (result.value) {
+                axios.get('/api/delete_service/' + id)
+                    .then(() => {
+                        Swal.fire (
+                            'Delete',
+                            'Service delete successfully',
+                            'success'
+                        )
+                        getServices()
+                    })
+            }
+        })
     }
 </script>
 <template>
@@ -102,10 +148,10 @@
                             </button>
                             <p>{{ item.description }}</p>
                             <div>
-                                <button class="btn-icon success">
+                                <button class="btn-icon success" @click="editModal(item)">
                                     <i class="fas fa-pencil-alt"></i>
                                 </button>
-                                <button class="btn-icon danger" >
+                                <button class="btn-icon danger" @click="deleteService(item.id)">
                                     <i class="far fa-trash-alt"></i>
                                 </button>
                             </div>
@@ -117,9 +163,10 @@
                 <div class="modal main__modal" :class="{ show: showModal }">
                     <div class="modal__content">
                         <span class="modal__close btn__close--modal" @click="closeModal()">×</span>
-                        <h3 class="modal__title">Add Service</h3>
+                        <h3 class="modal__title" v-show="editMode == false">Add Service</h3>
+                        <h3 class="modal__title" v-show="editMode == true">Update Service</h3>
                         <hr class="modal_line"><br>
-                        <form @submit.prevent="createService()">
+                        <form @submit.prevent="editMode.value ? createService() : updateService()">
                             <div>
                                 <p>Service Name</p>
                                 <input type="text" class="input" v-model="form.name" />
@@ -136,7 +183,12 @@
                                 <button class="btn mr-2 btn__close--modal" @click="closeModal()">
                                     Cancel
                                 </button>
-                                <button class="btn btn-secondary btn__close--modal ">Save</button>
+                                <button class="btn btn-secondary" v-show="editMode == false">
+                                    Save
+                                </button>
+                                <button class="btn btn-secondary" v-show="editMode == true">
+                                    Update
+                                </button>
                             </div>
                         </form>
                     </div>
