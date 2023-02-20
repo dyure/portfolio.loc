@@ -14,4 +14,15 @@ class SkillController extends Controller
             'skills' => $skills
         ],200);
     }
+
+    public function create_skill(Request $request) {
+        $this->validate($request,[
+            'name' => 'required'
+        ]);
+        $skill = new Skill();
+        $skill->name = $request->name;
+        $skill->proficiency = $request->proficiency;
+        $skill->service_id = $request->service_id;
+        $skill->save();
+    }
 }

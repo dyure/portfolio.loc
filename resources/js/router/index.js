@@ -33,7 +33,7 @@ const routes = [
     },
     {
         path: '/admin/services',
-        nam: 'adminService',
+        name: 'adminService',
         component: adminServiceIndex,
         meta: {
             requiresAuth:true
@@ -41,12 +41,13 @@ const routes = [
     },
     {
         path: '/admin/skills',
-        nam: 'adminSkill',
+        name: 'adminSkill',
         component: adminSkillIndex,
         meta: {
             requiresAuth:true
         }
     },
+
     //pages
     {
         path: '/',

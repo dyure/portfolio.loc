@@ -1,11 +1,11 @@
 <script setup>
     import Base from '../layouts/base.vue'
-    import { onMounted, ref, toDisplayString } from 'vue'
+    import { onMounted, ref } from 'vue'
 
     let services = ref([])
     const showModal = ref(false)
     const hideModal = ref(true)
-    const editMode = ref(true)
+    const editMode = ref(false)
     let form = ref({
         name : '',
         icon : '',
@@ -34,14 +34,14 @@
 
     const createService = async () => {
         await axios.post('/api/create_service', form.value)
-            .then(response =>{
-                getServices()
-                closeModal()
-                toast.fire({
-                    icon: 'success',
-                    title: 'Service add successfully'
-                })
+        .then(response =>{
+            getServices()
+            closeModal()
+            toast.fire({
+                icon: 'success',
+                title: 'Service add successfully'
             })
+        })
     }
 
     const editModal = (service) => {
@@ -100,7 +100,7 @@
                             <h1>Services</h1>
                         </div>
                         <div class="titlebar_item">
-                            <div class="btn btn__open--modal" @click="openModal()">
+                            <div class="btn btn__open--modal" @click="$event => openModal()">
                                 New Service
                             </div>
                         </div>
@@ -140,8 +140,9 @@
                             <p>Description</p>
                             <p>Actions</p>
                         </div>
-                        <!-- item 1 -->
-                        <div class="service_table-items" v-for="item in services" :key="item.id" v-if="services.length > 0">
+                        <!-- item 1  v-if="services.length > 0"-->
+                        <div></div>
+                        <div class="service_table-items" v-for="item in services" :key="item.id">
                             <p>{{ item.name }}</p>
                             <button class="service_table-icon">
                               <i class="{{ item.icon }}"></i>
@@ -166,7 +167,7 @@
                         <h3 class="modal__title" v-show="editMode == false">Add Service</h3>
                         <h3 class="modal__title" v-show="editMode == true">Update Service</h3>
                         <hr class="modal_line"><br>
-                        <form @submit.prevent="editMode.value ? createService() : updateService()">
+                        <form @submit.prevent="editMode.value ? updateService() : createService()">
                             <div>
                                 <p>Service Name</p>
                                 <input type="text" class="input" v-model="form.name" />
