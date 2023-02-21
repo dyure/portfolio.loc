@@ -89,3 +89,12 @@ Educations - обновление и удаление
 создать фабрику php artisan make:factory ExperienceFactory
 скорректировать файл /database/seeders/DatabaseSeeder.php и запустить команду php artisan db:seed
 создать контроллер: php artisan make:controller API/ExperienceController
+
+Experience - создание нового
+Experience - обновление и удаление
+Создание страницы Projects
+создать модель: php artisan make:model Project -m
+дополнить файл /database/migrations/...project_table.php полями и выполнить миграцию: php artisan migrate
+создать фабрику php artisan make:factory ProjectFactory
+скорректировать файл /database/seeders/DatabaseSeeder.php и запустить команду php artisan db:seed
+создать контроллер: php artisan make:controller API/ProjectController

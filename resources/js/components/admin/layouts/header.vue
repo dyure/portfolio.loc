@@ -19,7 +19,7 @@
         <header class="header" id="header">
             <div class="header_logo " >
                 <i class="header_collapse-btn fas fa-align-left"></i>
-                <img class="logo_img" src="assets/img/logo.png" alt="greatweb"
+                <img class="logo_img" src="/img/upload/logo.png" alt="greatweb"
                 />
             </div>
             <div class="header_search">

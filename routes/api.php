@@ -8,6 +8,7 @@ use App\Http\Controllers\API\ServiceController;
 use App\Http\Controllers\API\SkillController;
 use App\Http\Controllers\API\EducationController;
 use App\Http\Controllers\API\ExperienceController;
+use App\Http\Controllers\API\ProjectController;
 
 /*
 |--------------------------------------------------------------------------
@@ -51,7 +52,13 @@ Route::controller(EducationController::class)->group(function(){
 });
 Route::controller(ExperienceController::class)->group(function(){
     Route::get('/get_all_experience', 'get_all_experience');
-    //Route::post('/create_experience', 'create_experience');
-    //Route::post('/update_experience/{id}', 'update_experience');
-    //Route::get('/delete_experience/{id}', 'delete_experience');
+    Route::post('/create_experience', 'create_experience');
+    Route::post('/update_experience/{id}', 'update_experience');
+    Route::get('/delete_experience/{id}', 'delete_experience');
+});
+Route::controller(ProjectController::class)->group(function(){
+    Route::get('/get_all_project', 'get_all_project');
+    //Route::post('/create_project', 'create_project');
+    //Route::post('/update_project/{id}', 'update_project');
+    //Route::get('/delete_project/{id}', 'delete_project');
 });

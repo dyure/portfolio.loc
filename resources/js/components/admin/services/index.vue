@@ -100,7 +100,7 @@
                             <h1>Services</h1>
                         </div>
                         <div class="titlebar_item">
-                            <div class="btn btn__open--modal" @click="$event => openModal()">
+                            <div class="btn btn__open--modal" @click="openModal()">
                                 New Service
                             </div>
                         </div>
