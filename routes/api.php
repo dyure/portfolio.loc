@@ -7,6 +7,7 @@ use App\Http\Controllers\API\AboutController;
 use App\Http\Controllers\API\ServiceController;
 use App\Http\Controllers\API\SkillController;
 use App\Http\Controllers\API\EducationController;
+use App\Http\Controllers\API\ExperienceController;
 
 /*
 |--------------------------------------------------------------------------
@@ -46,5 +47,11 @@ Route::controller(EducationController::class)->group(function(){
     Route::get('/get_all_education', 'get_all_education');
     Route::post('/create_education', 'create_education');
     Route::post('/update_education/{id}', 'update_education');
-    Route::get('delete_education/{id}', 'delete_education');
+    Route::get('/delete_education/{id}', 'delete_education');
+});
+Route::controller(ExperienceController::class)->group(function(){
+    Route::get('/get_all_experience', 'get_all_experience');
+    //Route::post('/create_experience', 'create_experience');
+    //Route::post('/update_experience/{id}', 'update_experience');
+    //Route::get('/delete_experience/{id}', 'delete_experience');
 });

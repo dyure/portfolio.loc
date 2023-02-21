@@ -83,3 +83,9 @@ Skills - обновление и удаление
 Educations - создание нового
 Educations - обновление и удаление
 
+Создание страницы Experiences
+создать модель: php artisan make:model Experience -m
+дополнить файл /database/migrations/...experience_table.php полями и выполнить миграцию: php artisan migrate
+создать фабрику php artisan make:factory ExperienceFactory
+скорректировать файл /database/seeders/DatabaseSeeder.php и запустить команду php artisan db:seed
+создать контроллер: php artisan make:controller API/ExperienceController

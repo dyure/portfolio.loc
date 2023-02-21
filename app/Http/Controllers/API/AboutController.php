@@ -19,6 +19,7 @@ class AboutController extends Controller
             'name' => 'required',
             'email' => 'required'
         ]);
+        //dd('exist - ' . $about->cv . ', to upload - ' . $request->cv);
         if ($about->photo != $request->photo) {
             $strpos = strpos($request->photo, ';');
             $sub = substr($request->photo,0,$strpos);

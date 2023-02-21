@@ -5,9 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Education extends Model
+class Experience extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['institution', 'period', 'degree', 'department'];
+    protected $fillable = ['company', 'period', 'position'];
 }
