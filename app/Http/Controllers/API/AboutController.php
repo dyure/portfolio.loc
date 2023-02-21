@@ -55,8 +55,8 @@ class AboutController extends Controller
         $about->address = $request->address;
         $about->description = $request->description;
         $about->tagline = $request->tagline;
-        $about->photo = $name;
-        $about->cv = $namecv;
+        //$about->photo = $name;
+        //$about->cv = $namecv;
         $about->save();
         //dd('photo: ' . $name . ' cv: ' . $namecv);
     }

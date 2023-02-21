@@ -1,25 +1,26 @@
 <script setup>
     import Base from '../layouts/base.vue'
-    import { onMounted, ref } from 'vue'
+    import { onMounted, ref } from 'vue';
 
-    let services = ref([])
+    let educations = ref([])
     const showModal = ref(false)
     const hideModal = ref(true)
     const editMode = ref(false)
     let form = ref({
-        name : '',
-        icon : '',
-        description : ''
+        institution : '',
+        period : '',
+        degree : '',
+        department : ''
     })
 
     onMounted(async () => {
-        getServices()
+        getEducations()
     })
 
-    const getServices = async () => {
-        let response = await axios.get('/api/get_all_service')
+    const getEducations = async () => {
+        let response = await axios.get('/api/get_all_education')
         //console.log('response', response)
-        services.value = response.data.services
+        educations.value = response.data.educations
     }
 
     const openModal = () => {
@@ -32,37 +33,37 @@
         editMode.value = false
     }
 
-    const createService = async () => {
-        await axios.post('/api/create_service', form.value)
-        .then(response =>{
-            getServices()
+    const createEducation = async () => {
+        await axios.post('/api/create_education', form.value)
+        .then(response => {
+            getEducations()
             closeModal()
             toast.fire({
                 icon: 'success',
-                title: 'Service add successfully'
+                title: 'Education add successfully'
             })
         })
     }
 
-    const editModal = (service) => {
+    const editModal = (item) => {
         editMode.value = true
         showModal.value = !showModal.value
-        form.value = service
+        form.value = item
     }
 
-    const updateService = async () => {
-        await axios.post('/api/update_service/' + form.value.id, form.value)
-            .then (() => {
-                getServices()
-                closeModal()
-                toast.fire({
-                    icon: 'success',
-                    title: 'Service update successfully'
-                })
+    const updateEducation = async () => {
+        await axios.post('/api/update_education/' + form.value.id, form.value)
+        .then(() => {
+            getEducations()
+            closeModal()
+            toast.fire({
+                icon: 'success',
+                title: 'Education update successfully'
             })
+        })
     }
 
-    const deleteService = (id) => {
+    const deleteEducation = (id) => {
         Swal.fire({
             title: 'Are you shure?',
             text: "You can't go back",
@@ -70,19 +71,19 @@
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes, delete it!'
+            confirmButtonText: 'Yes, delete it'
         })
         .then((result) => {
-            if (result.value) {
-                axios.get('/api/delete_service/' + id)
-                    .then(() => {
-                        Swal.fire (
-                            'Delete',
-                            'Service delete successfully',
-                            'success'
-                        )
-                        getServices()
-                    })
+            if(result.value) {
+                axios.get('/api/delete_education/' + id)
+                .then(() => {
+                    Swal.fire(
+                        'Delete',
+                        'Education delete successfully',
+                        'success'
+                    )
+                    getEducations()
+                })
             }
         })
     }
@@ -93,20 +94,21 @@
         <div class="main__sideNav"></div>
         <!-- Main Content -->
         <div class="main__content">
-            <section class="services section" id="services">
-                <div class="services_container">
+            <section class="educations section" id="educations">
+                <div class="skills_container">
                     <div class="titlebar">
                         <div class="titlebar_item">
-                            <h1>Services</h1>
+                            <h1>Educations </h1>
                         </div>
                         <div class="titlebar_item">
-                            <div class="btn btn__open--modal" @click="$event => openModal()">
-                                New Service
+                            <div class="btn" @click="openModal()">
+                                New Education
                             </div>
                         </div>
                     </div>
 
                     <div class="table">
+
                         <div class="table_filter">
                             <span class="table_filter-Btn ">
                                 <i class="fas fa-ellipsis-h"></i>
@@ -130,58 +132,61 @@
                             </div>
                             <div class="relative">
                                 <i class="table_search-input--icon fas fa-search "></i>
-                                <input class="table_search--input" type="text" placeholder="Search Service">
+                                <input class="table_search--input" type="text" placeholder="Search Education">
                             </div>
                         </div>
 
-                        <div class="service_table-heading">
-                            <p>Title</p>
-                            <p>Icon</p>
-                            <p>Description</p>
+                        <div class="education_table-heading">
+                            <p>Institution</p>
+                            <p>Period</p>
+                            <p>Degree</p>
+                            <p>Department</p>
                             <p>Actions</p>
                         </div>
-                        <!-- item 1  v-if="services.length > 0"-->
-                        <div></div>
-                        <div class="service_table-items" v-for="item in services" :key="item.id">
-                            <p>{{ item.name }}</p>
-                            <button class="service_table-icon">
-                              <i class="{{ item.icon }}"></i>
-                            </button>
-                            <p>{{ item.description }}</p>
+                        <!-- item 1 -->
+                        <div class="education_table-items" v-for="item in educations" :key="item.id">
+                            <p>{{ item.institution }}</p>
+                            <p>{{ item.period }}</p>
+                            <p>{{ item.degree }}</p>
+                            <p>{{ item.department }}</p>
                             <div>
                                 <button class="btn-icon success" @click="editModal(item)">
                                     <i class="fas fa-pencil-alt"></i>
                                 </button>
-                                <button class="btn-icon danger" @click="deleteService(item.id)">
+                                <button class="btn-icon danger" @click="deleteEducation(item.id)">
                                     <i class="far fa-trash-alt"></i>
                                 </button>
                             </div>
                         </div>
+
                     </div>
 
                 </div>
-                <!-------------- SERVICES MODAL --------------->
+                <!-------------- EDUCATION MODAL --------------->
                 <div class="modal main__modal" :class="{ show: showModal }">
                     <div class="modal__content">
                         <span class="modal__close btn__close--modal" @click="closeModal()">×</span>
-                        <h3 class="modal__title" v-show="editMode == false">Add Service</h3>
-                        <h3 class="modal__title" v-show="editMode == true">Update Service</h3>
+                        <h3 class="modal__title" v-show="editMode == false">Add Education</h3>
+                        <h3 class="modal__title" v-show="editMode == true">Update Education</h3>
                         <hr class="modal_line"><br>
-                        <form @submit.prevent="editMode ? updateService() : createService()">
+                        <form @submit.prevent="editMode ? updateEducation() : createEducation()">
                             <div>
-                                <p>Service Name</p>
-                                <input type="text" class="input" v-model="form.name" />
+                                <p>Institution</p>
+                                <input type="text" class="input" v-model="form.institution" />
 
-                                <p>Icon Class</p>
-                                <input type="text" class="input" v-model="form.icon" />
-                                <span style="color:#006fbb;">Find your suitable icon: Font Awesome/Iconscout</span>
+                                <p>Period</p>
+                                <input type="text" class="input" v-model="form.period" />
 
-                                <p>Description</p>
-                                <textarea cols="10" rows="5" v-model="form.description"></textarea>
+                                <p>Degree</p>
+                                <input type="text" class="input" v-model="form.degree" />
+
+                                <p>Department</p>
+                                <input type="text" class="input" v-model="form.department" />
+
                             </div>
                             <br><hr class="modal_line">
                             <div class="model__footer">
-                                <button class="btn mr-2 btn__close--modal" @click="closeModal()">
+                                <button class="btn mr-2" @click="closeModal()">
                                     Cancel
                                 </button>
                                 <button class="btn btn-secondary" v-show="editMode == false">

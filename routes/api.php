@@ -6,6 +6,7 @@ use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\API\AboutController;
 use App\Http\Controllers\API\ServiceController;
 use App\Http\Controllers\API\SkillController;
+use App\Http\Controllers\API\EducationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,6 +39,12 @@ Route::controller(ServiceController::class)->group(function(){
 Route::controller(SkillController::class)->group(function(){
     Route::get('get_all_skill', 'get_all_skill');
     Route::post('create_skill', 'create_skill');
-    //Route::post('update_service/{id}', 'update_service');
-    //Route::get('delete_service/{id}', 'delete_service');
+    Route::post('update_skill/{id}', 'update_skill');
+    Route::get('delete_skill/{id}', 'delete_skill');
+});
+Route::controller(EducationController::class)->group(function(){
+    Route::get('/get_all_education', 'get_all_education');
+    Route::post('/create_education', 'create_education');
+    Route::post('/update_education/{id}', 'update_education');
+    Route::get('delete_education/{id}', 'delete_education');
 });

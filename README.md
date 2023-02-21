@@ -60,9 +60,6 @@ php artisan make:model About -m
 создать фабрику php artisan make:factory ServiceFactory
 скорректировать файл /database/seeders/DatabaseSeeder.php и запустить команду php artisan db:seed (!)
 создать контроллер: php artisan make:controller API/ServiceController
-Ошибки:
-1. В файле /resources/components/admin/services/index.vue строка 145 - v-if компонент не работает вместе с v-for компонентом.
-2. В файле /resources/components/admin/services/index.vue строка 170 - не срабатывает условный оператор. Так что все время вызывается функция updateService()
 
 17 feb 2023*********************************************************************************************
 Создание страницы Skills
@@ -74,3 +71,15 @@ php artisan make:model About -m
 
 20 feb 2023*********************************************************************************************
 Skills - создание нового
+
+21 feb 2023*********************************************************************************************
+Skills - обновление и удаление
+Создание страницы Educations
+создать модель: php artisan make:model Education -m
+дополнить файл /database/migrations/...education_table.php полями и выполнить миграцию: php artisan migrate
+создать фабрику php artisan make:factory EducationFactory
+скорректировать файл /database/seeders/DatabaseSeeder.php и запустить команду php artisan db:seed
+создать контроллер: php artisan make:controller API/EducationController
+Educations - создание нового
+Educations - обновление и удаление
+

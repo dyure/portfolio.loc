@@ -20,7 +20,7 @@
     const getAbout =  async () => {
         let response = await axios.get('/api/edit_about')
         form.value = response.data
-        console.log('form', form.value)
+        //console.log('form', form.value)
     }
 
     const getPhoto = () => {
@@ -40,7 +40,7 @@
         let reader = new FileReader();
         let limit = 1024*1024*2
         if (file['size'] > limit) {
-            swal({
+            Swal.fire({
                 icon: 'error',
                 title: 'Ooops...',
                 text: 'You are uploading a large file'
@@ -58,7 +58,7 @@
         let reader = new FileReader();
         let limit = 1024*1024*2
         if (file['size'] > limit) {
-            swal({
+            Swal.fire({
                 icon: 'error',
                 title: 'Ooops...',
                 text: 'You are uploading a large file'
@@ -72,7 +72,7 @@
     }
 
     const updateAbout = async () => {
-        await axios.post(`/api/update_about/${form.value.id}`, form.value)
+        await axios.post('/api/update_about/' + form.value.id, form.value)
             .then(response =>{
                 toast.fire({
                     icon: 'success',
