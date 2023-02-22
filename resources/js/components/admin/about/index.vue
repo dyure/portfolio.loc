@@ -24,7 +24,7 @@
     }
 
     const getPhoto = () => {
-        let photo = '/img/avatar.png'
+        let photo = '/img/upload/avatar.jpg'
         if (form.value.photo) {
             if (form.value.photo.indexOf('base64') != -1) {
                 photo = form.value.photo

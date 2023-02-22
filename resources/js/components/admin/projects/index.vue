@@ -1,6 +1,9 @@
 <script setup>
     import Base from '../layouts/base.vue'
     import { onMounted, ref } from 'vue'
+    import { useRouter } from 'vue-router'
+
+    const router = useRouter()
 
     let projects = ref([])
     onMounted(async () => {
@@ -16,6 +19,39 @@
     const ourImage = (img) => {
         return '/img/upload/' + img
     }
+
+    const newProject = () => {
+        router.push('/admin/projects/new')
+    }
+
+    const onEdit = (id) => {
+        router.push('/admin/projects/edit/' + id)
+    }
+
+    const deleteProject = (id) => {
+        Swal.fire({
+            title: 'Are you shure?',
+            text: "You can't go back",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        })
+        .then((result) => {
+            if (result.value) {
+                axios.get('/api/delete_project/' + id)
+                    .then(() => {
+                        Swal.fire (
+                            'Delete',
+                            'Project delete successfully',
+                            'success'
+                        )
+                        getProjects()
+                    })
+            }
+        })
+    }
 </script>
 <template>
     <Base/>
@@ -30,7 +66,7 @@
                             <h1>Projects </h1>
                         </div>
                         <div class="titlebar_item">
-                            <div class="btn btn__open--modal">
+                            <div class="btn" @click="newProject()">
                                 New Project
                             </div>
                         </div>
@@ -81,10 +117,10 @@
                             <p>{{ item.description }}</p>
                             <p>{{ item.link }}</p>
                             <div>
-                                <button class="btn-icon success">
+                                <button class="btn-icon success" @click="onEdit(item.id)">
                                     <i class="fas fa-pencil-alt"></i>
                                 </button>
-                                <button class="btn-icon danger" >
+                                <button class="btn-icon danger" @click="deleteProject(item.id)">
                                     <i class="far fa-trash-alt"></i>
                                 </button>
                             </div>

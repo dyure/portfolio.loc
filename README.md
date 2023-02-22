@@ -98,3 +98,7 @@ Experience - обновление и удаление
 создать фабрику php artisan make:factory ProjectFactory
 скорректировать файл /database/seeders/DatabaseSeeder.php и запустить команду php artisan db:seed
 создать контроллер: php artisan make:controller API/ProjectController
+
+22 feb 2023*********************************************************************************************
+Project - создание нового
+Project - обновление и удаление

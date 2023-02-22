@@ -19,8 +19,15 @@ class AboutController extends Controller
             'name' => 'required',
             'email' => 'required'
         ]);
-        //dd('exist - ' . $about->cv . ', to upload - ' . $request->cv);
-        if ($about->photo != $request->photo) {
+
+        $about->name = $request->name;
+        $about->email = $request->email;
+        $about->phone = $request->phone;
+        $about->address = $request->address;
+        $about->description = $request->description;
+        $about->tagline = $request->tagline;
+
+        if ($request->photo) {
             $strpos = strpos($request->photo, ';');
             $sub = substr($request->photo,0,$strpos);
             $ex = explode('/', $sub)[1];
@@ -29,13 +36,15 @@ class AboutController extends Controller
             $upload_path = public_path() . '/img/upload/';
             $image = $upload_path.$about->photo;
             $img->save($upload_path.$name);
-            //if (file_exists($image)) {
+            if (file_exists($image)) {
                 @unlink($image);
-            //} else {
-            //    $name = $about->photo;
-            //}
+            }
+        } else {
+            $name = $about->photo;
         }
-        if ($about->cv != $request->cv) {
+        $about->photo = $name;
+
+        if ($request->cv) {
             $strpos = strpos($request->cv, ';');
             $sub = substr($request->cv,0,$strpos);
             $ex = explode('/', $sub)[1];
@@ -44,21 +53,14 @@ class AboutController extends Controller
             $upload_path = public_path() . '/img/upload/';
             $image = $upload_path.$about->cv;
             $img->save($upload_path.$namecv);
-            //if (file_exists($image)) {
+            if (file_exists($image)) {
                 @unlink($image);
-            //} else {
-            //    $namecv = $about->cv;
-            //}
+            }
+        } else {
+            $namecv = $about->cv;
         }
-        $about->name = $request->name;
-        $about->email = $request->email;
-        $about->phone = $request->phone;
-        $about->address = $request->address;
-        $about->description = $request->description;
-        $about->tagline = $request->tagline;
-        //$about->photo = $name;
-        //$about->cv = $namecv;
+
+        $about->cv = $namecv;
         $about->save();
-        //dd('photo: ' . $name . ' cv: ' . $namecv);
     }
 }
