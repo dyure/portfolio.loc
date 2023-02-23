@@ -102,3 +102,11 @@ Experience - обновление и удаление
 22 feb 2023*********************************************************************************************
 Project - создание нового
 Project - обновление и удаление
+
+23 feb 2023*********************************************************************************************
+Создание страницы Testimonial
+создать модель: php artisan make:model Testimonial -m
+дополнить файл /database/migrations/...testimonial_table.php полями и выполнить миграцию: php artisan migrate
+создать фабрику php artisan make:factory TestimonialFactory
+скорректировать файл /database/seeders/DatabaseSeeder.php и запустить команду php artisan db:seed
+создать контроллер: php artisan make:controller API/TestimonialController
