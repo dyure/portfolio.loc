@@ -1,8 +1,12 @@
 <script setup>
     import Base from '../layouts/base.vue'
     import { onMounted, ref } from 'vue'
+    import { useRouter } from 'vue-router'
+
+    const router = useRouter()
 
     let testimonials = ref({})
+
     onMounted(async () => {
         getTestimonials()
     })
@@ -15,6 +19,39 @@
 
     const ourImage = (img) => {
         return '/img/upload/' + img
+    }
+
+    const newTestimonial = () => {
+        router.push('/admin/testimonials/new')
+    }
+
+    const onEdit = (id) => {
+        router.push('/admin/testimonials/edit/' + id)
+    }
+
+    const deleteTestimonial = (id) => {
+        Swal.fire({
+            title: 'Are you shure?',
+            text: "You can't go back",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        })
+        .then((result) => {
+            if (result.value) {
+                axios.get('/api/delete_testimonial/' + id)
+                    .then(() => {
+                        Swal.fire (
+                            'Delete',
+                            'Testimonial delete successfully',
+                            'success'
+                        )
+                        getTestimonials()
+                    })
+            }
+        })
     }
 </script>
 
@@ -31,7 +68,7 @@
                             <h1>Testimonials </h1>
                         </div>
                         <div class="titlebar_item">
-                            <div class="btn btn__open--modal">
+                            <div class="btn" @click="newTestimonial()">
                                 New Testimonial
                             </div>
                         </div>
@@ -84,10 +121,10 @@
                             <p>{{ item.testimony }}</p>
                             <p>{{ item.rating }}/5</p>
                             <div>
-                                <button class="btn-icon success">
+                                <button class="btn-icon success" @click="onEdit(item.id)">
                                     <i class="fas fa-pencil-alt"></i>
                                 </button>
-                                <button class="btn-icon danger" >
+                                <button class="btn-icon danger" @click="deleteTestimonial(item.id)">
                                     <i class="far fa-trash-alt"></i>
                                 </button>
                             </div>

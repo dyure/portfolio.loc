@@ -110,3 +110,7 @@ Project - обновление и удаление
 создать фабрику php artisan make:factory TestimonialFactory
 скорректировать файл /database/seeders/DatabaseSeeder.php и запустить команду php artisan db:seed
 создать контроллер: php artisan make:controller API/TestimonialController
+
+26 feb 2023*********************************************************************************************
+Testimonial - создание нового
+Testimonial - обновление и удаление

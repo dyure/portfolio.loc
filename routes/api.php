@@ -66,8 +66,8 @@ Route::controller(ProjectController::class)->group(function(){
 });
 Route::controller(TestimonialController::class)->group(function(){
     Route::get('/get_all_testimonial', 'get_all_testimonial');
-//    Route::post('/add_testimonial', 'add_testimonial');
-  //  Route::get('/get_edit_testimonial/{id}', 'get_edit_testimonial');
-//    Route::post('/update_testimonial/{id}', 'update_testimonial');
-  //  Route::get('/delete_testimonial/{id}', 'delete_testimonial');
+    Route::post('/add_testimonial', 'add_testimonial');
+    Route::get('/get_edit_testimonial/{id}', 'get_edit_testimonial');
+    Route::post('/update_testimonial/{id}', 'update_testimonial');
+    Route::get('/delete_testimonial/{id}', 'delete_testimonial');
 });
