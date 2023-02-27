@@ -114,3 +114,13 @@ Project - обновление и удаление
 26 feb 2023*********************************************************************************************
 Testimonial - создание нового
 Testimonial - обновление и удаление
+
+27 feb 2023*********************************************************************************************
+Создание страницы Message
+создать модель: php artisan make:model Message -m
+дополнить файл /database/migrations/...messages_table.php полями и выполнить миграцию: php artisan migrate
+создать фабрику php artisan make:factory MessageFactory
+скорректировать файл /database/seeders/DatabaseSeeder.php и запустить команду php artisan db:seed
+создать контроллер: php artisan make:controller API/MessageController
+
+Message - изменение статуса и удаление

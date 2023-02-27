@@ -10,6 +10,7 @@ use App\Http\Controllers\API\EducationController;
 use App\Http\Controllers\API\ExperienceController;
 use App\Http\Controllers\API\ProjectController;
 use App\Http\Controllers\API\TestimonialController;
+use App\Http\Controllers\API\MessageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -70,4 +71,9 @@ Route::controller(TestimonialController::class)->group(function(){
     Route::get('/get_edit_testimonial/{id}', 'get_edit_testimonial');
     Route::post('/update_testimonial/{id}', 'update_testimonial');
     Route::get('/delete_testimonial/{id}', 'delete_testimonial');
+});
+Route::controller(MessageController::class)->group(function(){
+    Route::get('/get_all_message', 'get_all_message');
+    Route::post('/change_status/{id}', 'change_status');
+    Route::get('/delete_message/{id}', 'delete_message');
 });
