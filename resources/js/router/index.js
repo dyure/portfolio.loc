@@ -31,7 +31,8 @@ const routes = [
         name: 'adminHome',
         component: homeAdminIndex,
         meta: {
-            requiresAuth:true
+            requiresAuth:true,
+            title: 'Potrfolio/Admin'
         }
     },
     {
@@ -39,7 +40,8 @@ const routes = [
         name: 'adminAbout',
         component: adminAboutIndex,
         meta: {
-            requiresAuth:true
+            requiresAuth:true,
+            title: 'Potrfolio/Admin/About'
         }
     },
     {
@@ -47,7 +49,8 @@ const routes = [
         name: 'adminService',
         component: adminServiceIndex,
         meta: {
-            requiresAuth:true
+            requiresAuth:true,
+            title: 'Potrfolio/Admin/Services'
         }
     },
     {
@@ -55,7 +58,8 @@ const routes = [
         name: 'adminSkill',
         component: adminSkillIndex,
         meta: {
-            requiresAuth:true
+            requiresAuth:true,
+            title: 'Potrfolio/Admin/Skills'
         }
     },
     {
@@ -63,7 +67,8 @@ const routes = [
         name: 'adminEducation',
         component: adminEducationIndex,
         meta: {
-            requiresAuth:true
+            requiresAuth:true,
+            title: 'Potrfolio/Admin/Educations'
         }
     },
     {
@@ -71,7 +76,8 @@ const routes = [
         name: 'adminExperience',
         component: adminExperienceIndex,
         meta: {
-            requiresAuth:true
+            requiresAuth:true,
+            title: 'Potrfolio/Admin/Experiences'
         }
     },
     {
@@ -79,7 +85,8 @@ const routes = [
         name: 'adminProject',
         component: adminProjectIndex,
         meta: {
-            requiresAuth:true
+            requiresAuth:true,
+            title: 'Potrfolio/Admin/Projects'
         }
     },
     {
@@ -87,7 +94,8 @@ const routes = [
         name: 'adminProjectNew',
         component: adminProjectNew,
         meta: {
-            requiresAuth:true
+            requiresAuth:true,
+            title: 'Potrfolio/Admin/Projects/New'
         }
     },
     {
@@ -95,7 +103,8 @@ const routes = [
         name: 'adminProjectEdit',
         component: adminProjectEdit,
         meta: {
-            requiresAuth:true
+            requiresAuth:true,
+            title: 'Potrfolio/Admin/Projects/Edit/'
         },
         props: true
     },
@@ -104,7 +113,8 @@ const routes = [
         name: 'adminTestimonial',
         component: adminTestimonialIndex,
         meta: {
-            requiresAuth:true
+            requiresAuth:true,
+            title: 'Potrfolio/Admin/Testimonials'
         }
     },
     {
@@ -112,7 +122,8 @@ const routes = [
         name: 'adminTestimonialNew',
         component: adminTestimonialNew,
         meta: {
-            requiresAuth:true
+            requiresAuth:true,
+            title: 'Potrfolio/Admin/Testimonials/New'
         }
     },
     {
@@ -120,7 +131,8 @@ const routes = [
         name: 'adminTestimonialEdit',
         component: adminTestimonialEdit,
         meta: {
-            requiresAuth:true
+            requiresAuth:true,
+            title: 'Potrfolio/Admin/Testimonials/Edit/'
         },
         props: true
     },
@@ -129,7 +141,8 @@ const routes = [
         name: 'adminMessage',
         component: adminMessageIndex,
         meta: {
-            requiresAuth:true
+            requiresAuth:true,
+            title: 'Potrfolio/Admin/Messages'
         }
     },
     {
@@ -137,7 +150,8 @@ const routes = [
         name: 'adminUser',
         component: adminUserIndex,
         meta: {
-            requiresAuth:true
+            requiresAuth:true,
+            title: 'Potrfolio/Admin/Users'
         }
     },
     {
@@ -145,7 +159,8 @@ const routes = [
         name: 'adminUserProfile',
         component: adminUserProfile,
         meta: {
-            requiresAuth:true
+            requiresAuth:true,
+            title: 'Portfolio/Admin/User Profile'
         }
     },
 
@@ -156,7 +171,8 @@ const routes = [
         name: 'Home',
         component: homePageIndex,
         meta: {
-            requiresAuth:false
+            requiresAuth:false,
+            title: 'Potrfolio'
         }
     },
     //login
@@ -165,7 +181,8 @@ const routes = [
         name: 'Login',
         component: login,
         meta: {
-            requiresAuth:false
+            requiresAuth:false,
+            title: 'Potrfolio/Login page'
         }
     },
     //notFound
@@ -174,7 +191,8 @@ const routes = [
         name: 'notFound',
         component: notFound,
         meta: {
-            requiresAuth:false
+            requiresAuth:false,
+            title: 'Potrfolio/404 page'
         }
     }
 ]
@@ -184,13 +202,14 @@ const router = createRouter({
     routes,
 })
 
-router.beforeEach((to,from) =>{
+router.beforeEach((to,from) => {
     if (to.meta.requiresAuth && !localStorage.getItem('token')){
         return { name: 'Login' }
     }
     if (to.meta.requiresAuth == false && localStorage.getItem('token')){
         return { name: 'adminHome' }
     }
+    document.title = to.meta.title
 })
 
 export default router
