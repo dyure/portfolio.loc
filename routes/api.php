@@ -83,4 +83,6 @@ Route::controller(UserController::class)->group(function(){
     Route::post('/add_user', 'add_user');
     Route::post('/update_user/{id}', 'update_user');
     Route::get('/delete_user/{id}', 'delete_user');
+    Route::get('/profile', 'profile');
+    Route::post('/update_profile/{id}', 'update_profile');
 });

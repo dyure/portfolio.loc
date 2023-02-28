@@ -15,6 +15,7 @@ import adminTestimonialNew from '../components/admin/testimonials/new.vue'
 import adminTestimonialEdit from '../components/admin/testimonials/edit.vue'
 import adminMessageIndex from '../components/admin/messages/index.vue'
 import adminUserIndex from '../components/admin/users/index.vue'
+import adminUserProfile from '../components/admin/users/profile.vue'
 
 //pages
 import homePageIndex from '../components/pages/home/index.vue'
@@ -135,6 +136,14 @@ const routes = [
         path: '/admin/users',
         name: 'adminUser',
         component: adminUserIndex,
+        meta: {
+            requiresAuth:true
+        }
+    },
+    {
+        path: '/admin/users/profile',
+        name: 'adminUserProfile',
+        component: adminUserProfile,
         meta: {
             requiresAuth:true
         }
