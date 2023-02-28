@@ -11,6 +11,7 @@ use App\Http\Controllers\API\ExperienceController;
 use App\Http\Controllers\API\ProjectController;
 use App\Http\Controllers\API\TestimonialController;
 use App\Http\Controllers\API\MessageController;
+use App\Http\Controllers\API\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -76,4 +77,10 @@ Route::controller(MessageController::class)->group(function(){
     Route::get('/get_all_message', 'get_all_message');
     Route::post('/change_status/{id}', 'change_status');
     Route::get('/delete_message/{id}', 'delete_message');
+});
+Route::controller(UserController::class)->group(function(){
+    Route::get('/get_all_user', 'get_all_user');
+    Route::post('/add_user', 'add_user');
+    Route::post('/update_user/{id}', 'update_user');
+    Route::get('/delete_user/{id}', 'delete_user');
 });

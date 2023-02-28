@@ -124,3 +124,16 @@ Testimonial - обновление и удаление
 создать контроллер: php artisan make:controller API/MessageController
 
 Message - изменение статуса и удаление
+
+28 feb 2023*********************************************************************************************
+Создание страницы Users
+добавить поле Type к таблице Users: php artisan make:migration add_type_to_users_table
+дополнить файл /database/migrations/...add_type_to_users_table.php полем Type и выполнить миграцию: php artisan migrate
+добавить поле Bio к таблице Users: php artisan make:migration add_bio_to_users_table
+дополнить файл /database/migrations/...add_bio_to_users_table.php полем Bio и выполнить миграцию: php artisan migrate
+добавить поле Photo к таблице Users: php artisan make:migration add_photo_to_users_table
+дополнить файл /database/migrations/...add_photo_to_users_table.php полем Photo и выполнить миграцию: php artisan migrate
+создать контроллер: php artisan make:controller API/UserController
+
+Users - создание нового
+Users - обновление и удаление
