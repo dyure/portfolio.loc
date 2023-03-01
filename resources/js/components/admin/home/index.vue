@@ -1,18 +1,80 @@
 <script setup>
     import { useRouter } from 'vue-router'
     import Base from '../layouts/base.vue'
+    import { onMounted, ref } from 'vue'
 
-    const
-    router = useRouter()
+    let skills = ref([])
+    let services = ref([])
+    let educations = ref([])
+    let experiences = ref([])
+    let projects = ref([])
+    let messages = ref([])
+    let testimonials = ref([])
+    let users = ref([])
+
+    const router = useRouter()
     const logout = () => {
         localStorage.removeItem('token')
         router.push('/')
+    }
+
+    onMounted(async () => {
+        getSkills()
+        getServices()
+        getEducations()
+        getExperiences()
+        getProjects()
+        getMessages()
+        getTestimonials()
+        getUsers()
+    })
+
+    const getSkills = async () => {
+        let response = await axios.get('/api/get_all_skill')
+        skills.value = response.data.skills
+    }
+
+    const getServices = async () => {
+        let response = await axios.get('/api/get_all_service')
+        services.value = response.data.services
+    }
+
+    const getEducations = async () => {
+        let response = await axios.get('/api/get_all_education')
+        educations.value = response.data.educations
+    }
+    const getExperiences = async () => {
+        let response = await axios.get('/api/get_all_experience')
+        experiences.value = response.data.experiences
+    }
+
+    const getProjects = async () => {
+        let response = await axios.get('/api/get_all_project')
+        projects.value = response.data.projects
+    }
+
+    const getMessages = async () => {
+        let response = await axios.get('/api/get_all_message')
+        messages.value = response.data.messages
+    }
+
+    const getTestimonials = async () => {
+        let response = await axios.get('/api/get_all_testimonial')
+        testimonials.value = response.data.testimonials
+    }
+
+    const getUsers = async () => {
+        let response = await axios.get('/api/get_all_user')
+        users.value = response.data.users
+    }
+
+    const ourImage = (img) => {
+        return '/img/upload/' + img
     }
 </script>
 
 <template>
     <Base />
-
         <!--==================== MAIN ====================-->
         <main class="main">
             <!-- Side Nav Dummy-->
@@ -35,121 +97,22 @@
 
                             </div>
                         </div>
-                        <div class="overview_skills">
+                        <div class="overview_skills" v-for="service in services" :key="service.id">
                             <div class="overview_skills-title">
-                                <h3>Frontend developer</h3>
+                                <h3>{{ service.name }}</h3>
                             </div>
-                            <div class="skills_data">
-                                <div class="skills_titles">
-                                    <h3 class="skills_name">HTML</h3>
-                                    <span class="skills_number">90%</span>
-                                </div>
-                                <div class="skills_bar">
-                                    <span class="skills_percentage skills_html"></span>
-                                </div>
-                            </div>
-                            <div class="skills_data">
-                                <div class="skills_titles">
-                                    <h3 class="skills_name">CSS</h3>
-                                    <span class="skills_number">80%</span>
-                                </div>
-                                <div class="skills_bar">
-                                    <span class="skills_percentage skills_css"></span>
+                            <div v-for="skill in skills" :key="skill.id">
+                                <div class="skills_data" v-if="service.id == skill.service_id">
+                                    <div class="skills_titles">
+                                        <h3 class="skills_name">{{ skill.name }}</h3>
+                                        <span class="skills_number">{{ skill.proficiency }}%</span>
+                                    </div>
+                                    <div class="skills_bar">
+                                        <span class="skills_percentage skills_html" :style="{ 'width' : `${ skill.proficiency }%`}"></span>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="skills_data">
-                                <div class="skills_titles">
-                                    <h3 class="skills_name">JavaScript</h3>
-                                    <span class="skills_number">75%</span>
-                                </div>
-                                <div class="skills_bar">
-                                    <span class="skills_percentage skills_js"></span>
-                                </div>
-                            </div>
-                        </div>
-                        <br>
-                        <div class="overview_skills">
-                            <div class="overview_skills-title">
-                                <h3>Backend developer</h3>
-                            </div>
-                            <div class="skills_data">
-                                <div class="skills_titles">
-                                    <h3 class="skills_name">PHP</h3>
-                                    <span class="skills_number">90%</span>
-                                </div>
-                                <div class="skills_bar">
-                                    <span class="skills_percentage skills_html"></span>
-                                </div>
-                            </div>
-                            <div class="skills_data">
-                                <div class="skills_titles">
-                                    <h3 class="skills_name">Node Js</h3>
-                                    <span class="skills_number">80%</span>
-                                </div>
-                                <div class="skills_bar">
-                                    <span class="skills_percentage skills_css"></span>
-                                </div>
-                            </div>
-                            <div class="skills_data">
-                                <div class="skills_titles">
-                                    <h3 class="skills_name">Python</h3>
-                                    <span class="skills_number">75%</span>
-                                </div>
-                                <div class="skills_bar">
-                                    <span class="skills_percentage skills_js"></span>
-                                </div>
-                            </div>
-                            <div class="skills_data">
-                                <div class="skills_titles">
-                                    <h3 class="skills_name">Ruby</h3>
-                                    <span class="skills_number">75%</span>
-                                </div>
-                                <div class="skills_bar">
-                                    <span class="skills_percentage skills_js"></span>
-                                </div>
-                            </div>
-                        </div>
-                        <br>
-                        <div class="overview_skills">
-                            <div class="overview_skills-title">
-                                <h3>Designer</h3>
-                            </div>
-                            <div class="skills_data">
-                                <div class="skills_titles">
-                                    <h3 class="skills_name">Figma</h3>
-                                    <span class="skills_number">90%</span>
-                                </div>
-                                <div class="skills_bar">
-                                    <span class="skills_percentage skills_html"></span>
-                                </div>
-                            </div>
-                            <div class="skills_data">
-                                <div class="skills_titles">
-                                    <h3 class="skills_name">Sketch</h3>
-                                    <span class="skills_number">80%</span>
-                                </div>
-                                <div class="skills_bar">
-                                    <span class="skills_percentage skills_css"></span>
-                                </div>
-                            </div>
-                            <div class="skills_data">
-                                <div class="skills_titles">
-                                    <h3 class="skills_name">Adobe XD</h3>
-                                    <span class="skills_number">75%</span>
-                                </div>
-                                <div class="skills_bar">
-                                    <span class="skills_percentage skills_js"></span>
-                                </div>
-                            </div>
-                            <div class="skills_data">
-                                <div class="skills_titles">
-                                    <h3 class="skills_name">Photoshop</h3>
-                                    <span class="skills_number">75%</span>
-                                </div>
-                                <div class="skills_bar">
-                                    <span class="skills_percentage skills_js"></span>
-                                </div>
-                            </div>
+
                         </div>
                     </div>
                     <div class="overview_right">
@@ -167,81 +130,81 @@
                             <div class="overview_cards-item">
                                 <div class="overview_data">
                                     <p>Skills</p>
-                                    <span>16</span>
+                                    <span>{{ skills.length }}</span>
                                 </div>
                                 <div class="overview_link">
                                     <span></span>
-                                    <a href="#">View Reports</a>
+                                    <a href="/admin/skills">View Reports</a>
                                 </div>
                             </div>
                             <div class="overview_cards-item">
                                 <div class="overview_data">
                                     <p>Educations</p>
-                                    <span>16</span>
+                                    <span>{{ educations.length }}</span>
                                 </div>
                                 <div class="overview_link">
                                     <span></span>
-                                    <a href="#">View Reports</a>
+                                    <a href="/admin/educations">View Reports</a>
                                 </div>
                             </div>
                             <div class="overview_cards-item">
                                 <div class="overview_data">
                                     <p>Experience</p>
-                                    <span>16</span>
+                                    <span>{{ experiences.length }}</span>
                                 </div>
                                 <div class="overview_link">
                                     <span></span>
-                                    <a href="#">View Reports</a>
+                                    <a href="/admin/experiences">View Reports</a>
                                 </div>
                             </div>
                             <div class="overview_cards-item">
                                 <div class="overview_data">
                                     <p>Services</p>
-                                    <span>16</span>
+                                    <span>{{ services.length }}</span>
                                 </div>
                                 <div class="overview_link">
                                     <span></span>
-                                    <a href="#">View Reports</a>
+                                    <a href="/admin/services">View Reports</a>
                                 </div>
                             </div>
                             <div class="overview_cards-item">
                                 <div class="overview_data">
                                     <p>Projects</p>
-                                    <span>9</span>
+                                    <span>{{ projects.length }}</span>
                                 </div>
                                 <div class="overview_link">
                                     <span></span>
-                                    <a href="#">View Reports</a>
+                                    <a href="/admin/projects">View Reports</a>
                                 </div>
                             </div>
                             <div class="overview_cards-item">
                                 <div class="overview_data">
                                     <p>Testimonials</p>
-                                    <span>9</span>
+                                    <span>{{ testimonials.length }}</span>
                                 </div>
                                 <div class="overview_link">
                                     <span></span>
-                                    <a href="#">View Reports</a>
+                                    <a href="/admin/testimonials">View Reports</a>
                                 </div>
                             </div>
                             <div class="overview_cards-item">
                                 <div class="overview_data">
                                     <p>Messages</p>
-                                    <span>9</span>
+                                    <span>{{ messages.length }}</span>
                                 </div>
                                 <div class="overview_link">
                                     <span></span>
-                                    <a href="#">View Reports</a>
+                                    <a href="/admin/messages">View Reports</a>
                                 </div>
                             </div>
                             <div class="overview_cards-item">
                                 <div class="overview_data">
                                     <p>Users</p>
-                                    <span>9</span>
+                                    <span>{{ users.length }}</span>
                                 </div>
                                 <div class="overview_link">
                                     <span></span>
-                                    <a href="#">View Reports</a>
+                                    <a href="/admin/users">View Reports</a>
                                 </div>
                             </div>
 
@@ -263,37 +226,9 @@
                                        <p>Image</p>
                                        <p>Product</p>
                                     </div>
-                                    <div class="overview_table-items" >
-                                        <img src="assets/img/portfolio1.jpeg" style="height:50px;width:50px;" />
-                                        <a>Product item.name item.name item.name</a>
-                                    </div>
-                                    <div class="overview_table-items" >
-                                        <img src="assets/img/portfolio2.jpg" style="height:50px;width:50px;" />
-                                        <a>Product item.name item.name item.name</a>
-                                    </div>
-                                    <div class="overview_table-items" >
-                                        <img src="assets/img/portfolio3.jpg" style="height:50px;width:50px;" />
-                                        <a>Product item.name item.name item.name</a>
-                                    </div>
-                                    <div class="overview_table-items" >
-                                        <img src="assets/img/portfolio1.jpeg" style="height:50px;width:50px;" />
-                                        <a>Product item.name item.name item.name</a>
-                                    </div>
-                                    <div class="overview_table-items" >
-                                        <img src="assets/img/portfolio1.jpeg" style="height:50px;width:50px;" />
-                                        <a>Product item.name item.name item.name</a>
-                                    </div>
-                                    <div class="overview_table-items" >
-                                        <img src="assets/img/portfolio1.jpeg" style="height:50px;width:50px;" />
-                                        <a>Product item.name item.name item.name</a>
-                                    </div>
-                                    <div class="overview_table-items" >
-                                        <img src="assets/img/portfolio1.jpeg" style="height:50px;width:50px;" />
-                                        <a>Product item.name item.name item.name</a>
-                                    </div>
-                                    <div class="overview_table-items" >
-                                        <img src="assets/img/portfolio1.jpeg" style="height:50px;width:50px;" />
-                                        <a>Product item.name item.name item.name</a>
+                                    <div class="overview_table-items" v-for="project in projects" :key="project.id">
+                                        <img :src="ourImage(project.photo)" style="height:50px;width:50px;" />
+                                        <a>{{ project.title }}</a>
                                     </div>
                                 </div>
                             </div>
@@ -311,37 +246,9 @@
                                        <p>Image</p>
                                        <p>Product</p>
                                     </div>
-                                    <div class="overview_table-items" >
-                                        <img src="assets/img/portfolio1.jpeg" style="height:50px;width:50px;" />
-                                        <a>Product item.name item.name item.name</a>
-                                    </div>
-                                    <div class="overview_table-items" >
-                                        <img src="assets/img/portfolio1.jpeg" style="height:50px;width:50px;" />
-                                        <a>Product item.name item.name item.name</a>
-                                    </div>
-                                    <div class="overview_table-items" >
-                                        <img src="assets/img/portfolio1.jpeg" style="height:50px;width:50px;" />
-                                        <a>Product item.name item.name item.name</a>
-                                    </div>
-                                    <div class="overview_table-items" >
-                                        <img src="assets/img/portfolio1.jpeg" style="height:50px;width:50px;" />
-                                        <a>Product item.name item.name item.name</a>
-                                    </div>
-                                    <div class="overview_table-items" >
-                                        <img src="assets/img/portfolio1.jpeg" style="height:50px;width:50px;" />
-                                        <a>Product item.name item.name item.name</a>
-                                    </div>
-                                    <div class="overview_table-items" >
-                                        <img src="assets/img/portfolio1.jpeg" style="height:50px;width:50px;" />
-                                        <a>Product item.name item.name item.name</a>
-                                    </div>
-                                    <div class="overview_table-items" >
-                                        <img src="assets/img/portfolio1.jpeg" style="height:50px;width:50px;" />
-                                        <a>Product item.name item.name item.name</a>
-                                    </div>
-                                    <div class="overview_table-items" >
-                                        <img src="assets/img/portfolio1.jpeg" style="height:50px;width:50px;" />
-                                        <a>Product item.name item.name item.name</a>
+                                    <div class="overview_table-items" v-for="testimonial in testimonials" :key="testimonial.id">
+                                        <img :src="ourImage(testimonial.photo)" style="height:50px;width:50px;" />
+                                        <a>{{ testimonial.name }}</a>
                                     </div>
                                 </div>
                             </div>

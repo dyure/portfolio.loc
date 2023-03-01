@@ -138,4 +138,15 @@ Message - изменение статуса и удаление
 Users - создание нового
 Users - обновление и удаление
 
-Изменение мета-тэга <title>. В файле /resources/js/router/index.js в описание каждого компонента, в массив meta добавляем элемент title и, затем, в определении константы router добавляем строку document.title = to.meta.title  
+Создание страницы Profile
+
+1 mar 2023*********************************************************************************************
+Изменение мета-тэга <title>. В файле /resources/js/router/index.js в описание каждого компонента, в массив meta добавляем элемент title и, затем, в определении константы router добавляем строку document.title = to.meta.title
+
+добавление класса nav__active в файле /resources/js/components/admin/layouts/sidebar.vue в зависимости от выбранного пункта меню с помощью директивы active-class
+
+вывод списка services со связанными с ними skills в файле /resources/js/components/admin/home/index.vue
+
+вывод количества записей по разделам в файле /resources/js/components/admin/home/index.vue
+
+вывод списков Projects и Testimonials в файле /resources/js/components/admin/home/index.vue

@@ -32,7 +32,7 @@
             </div>
             <div class="header_profile" @click="openNavHeader">
                 <div class="header_profile-imgWrapper ">
-                    <img class="header_profile-img" src="assets/img/avatar.jpg" alt=""/>
+                    <img class="header_profile-img" src="" alt=""/>
                 </div>
                 <p class="header_profile-name">
                     Zander Ford
@@ -52,7 +52,7 @@
 
         <!-- Header Profile -->
         <div>
-            <span class="header_profile-name--nav" v-bind:class="{show:showNavHeader}">
+            <span class="header_profile-name--nav" v-bind:class="{ show:showNavHeader }">
                 <span class="header_profile-name--nav--pointer">
                     <i class="fas fa-sort-up"></i>
                 </span>

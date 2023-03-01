@@ -7,7 +7,7 @@
                 </span>
                 <ul class="nav_list">
                     <li class="nav_item">
-                        <router-link class="nav_link nav__active" to="/admin/home">
+                        <router-link class="nav_link" active-class="nav__active" to="/admin/home">
                             <span class="nav_link--span--icon">
                                 <i class="fas fa-home nav__link--icon"> </i>
                             </span>
@@ -17,7 +17,7 @@
                         </router-link>
                     </li>
                     <li class="nav_item">
-                        <router-link class="nav_link" to="/admin/about">
+                        <router-link class="nav_link" active-class="nav__active" to="/admin/about">
                             <span class="nav_link--span--icon">
                                 <i class="fas fa-home nav__link--icon"> </i>
                             </span>
@@ -27,7 +27,7 @@
                         </router-link>
                     </li>
                     <li class="nav_item">
-                        <router-link class="nav_link" to="/admin/services">
+                        <router-link class="nav_link" active-class="nav__active" to="/admin/services">
                             <span class="nav_link--span--icon">
                                 <i class="fas fa-home nav__link--icon"> </i>
                             </span>
@@ -37,7 +37,7 @@
                         </router-link>
                     </li>
                     <li class="nav_item">
-                        <router-link class="nav_link" to="/admin/skills">
+                        <router-link class="nav_link" active-class="nav__active" to="/admin/skills">
                             <span class="nav_link--span--icon">
                                 <i class="fas fa-home nav__link--icon"> </i>
                             </span>
@@ -47,7 +47,7 @@
                         </router-link>
                     </li>
                     <li class="nav_item">
-                        <router-link class="nav_link " to="/admin/educations">
+                        <router-link class="nav_link" active-class="nav__active" to="/admin/educations">
                             <span class="nav_link--span--icon">
                                 <i class="fas fa-home nav__link--icon"> </i>
                             </span>
@@ -57,7 +57,7 @@
                         </router-link>
                     </li>
                     <li class="nav_item">
-                        <router-link class="nav_link " to="/admin/experiences">
+                        <router-link class="nav_link" active-class="nav__active" to="/admin/experiences">
                             <span class="nav_link--span--icon">
                                 <i class="fas fa-home nav__link--icon"> </i>
                             </span>
@@ -67,7 +67,7 @@
                         </router-link>
                     </li>
                     <li class="nav_item">
-                        <router-link class="nav_link " to="/admin/projects">
+                        <router-link class="nav_link" active-class="nav__active" to="/admin/projects">
                             <span class="nav_link--span--icon">
                                 <i class="fas fa-home nav__link--icon"> </i>
                             </span>
@@ -77,7 +77,7 @@
                         </router-link>
                     </li>
                     <li class="nav_item">
-                        <router-link class="nav_link " to="/admin/testimonials">
+                        <router-link class="nav_link" active-class="nav__active" to="/admin/testimonials">
                             <span class="nav_link--span--icon">
                                 <i class="fas fa-home nav__link--icon"> </i>
                             </span>
@@ -87,7 +87,7 @@
                         </router-link>
                     </li>
                     <li class="nav_item">
-                        <router-link class="nav_link " to="/admin/messages">
+                        <router-link class="nav_link" active-class="nav__active" to="/admin/messages">
                             <span class="nav_link--span--icon">
                                 <i class="fas fa-home nav__link--icon"> </i>
                             </span>
@@ -97,7 +97,7 @@
                         </router-link>
                     </li>
                     <li class="nav_item">
-                        <router-link class="nav_link " to="/admin/users">
+                        <router-link class="nav_link" active-class="nav__active" to="/admin/users">
                             <span class="nav_link--span--icon">
                                 <i class="fas fa-home nav__link--icon"> </i>
                             </span>

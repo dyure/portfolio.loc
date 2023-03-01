@@ -24,6 +24,8 @@ import homePageIndex from '../components/pages/home/index.vue'
 import login from '../components/auth/login.vue'
 import notFound from '../components/notFound.vue'
 
+const myTitle = document.getElementsByTagName('title')[0].innerHTML
+
 const routes = [
     //admin
     {
@@ -32,7 +34,7 @@ const routes = [
         component: homeAdminIndex,
         meta: {
             requiresAuth:true,
-            title: 'Potrfolio/Admin'
+            title: myTitle + '/Admin'
         }
     },
     {
@@ -41,7 +43,7 @@ const routes = [
         component: adminAboutIndex,
         meta: {
             requiresAuth:true,
-            title: 'Potrfolio/Admin/About'
+            title: myTitle + '/Admin/About'
         }
     },
     {
@@ -50,7 +52,7 @@ const routes = [
         component: adminServiceIndex,
         meta: {
             requiresAuth:true,
-            title: 'Potrfolio/Admin/Services'
+            title: myTitle + '/Admin/Services'
         }
     },
     {
@@ -59,7 +61,7 @@ const routes = [
         component: adminSkillIndex,
         meta: {
             requiresAuth:true,
-            title: 'Potrfolio/Admin/Skills'
+            title: myTitle + '/Admin/Skills'
         }
     },
     {
@@ -68,7 +70,7 @@ const routes = [
         component: adminEducationIndex,
         meta: {
             requiresAuth:true,
-            title: 'Potrfolio/Admin/Educations'
+            title: myTitle + '/Admin/Educations'
         }
     },
     {
@@ -77,7 +79,7 @@ const routes = [
         component: adminExperienceIndex,
         meta: {
             requiresAuth:true,
-            title: 'Potrfolio/Admin/Experiences'
+            title: myTitle + '/Admin/Experiences'
         }
     },
     {
@@ -86,7 +88,7 @@ const routes = [
         component: adminProjectIndex,
         meta: {
             requiresAuth:true,
-            title: 'Potrfolio/Admin/Projects'
+            title: myTitle + '/Admin/Projects'
         }
     },
     {
@@ -95,7 +97,7 @@ const routes = [
         component: adminProjectNew,
         meta: {
             requiresAuth:true,
-            title: 'Potrfolio/Admin/Projects/New'
+            title: myTitle + '/Admin/Projects/New'
         }
     },
     {
@@ -104,7 +106,7 @@ const routes = [
         component: adminProjectEdit,
         meta: {
             requiresAuth:true,
-            title: 'Potrfolio/Admin/Projects/Edit/'
+            title: myTitle + '/Admin/Projects/Edit/'
         },
         props: true
     },
@@ -114,7 +116,7 @@ const routes = [
         component: adminTestimonialIndex,
         meta: {
             requiresAuth:true,
-            title: 'Potrfolio/Admin/Testimonials'
+            title: myTitle + '/Admin/Testimonials'
         }
     },
     {
@@ -123,7 +125,7 @@ const routes = [
         component: adminTestimonialNew,
         meta: {
             requiresAuth:true,
-            title: 'Potrfolio/Admin/Testimonials/New'
+            title: myTitle + '/Admin/Testimonials/New'
         }
     },
     {
@@ -132,7 +134,7 @@ const routes = [
         component: adminTestimonialEdit,
         meta: {
             requiresAuth:true,
-            title: 'Potrfolio/Admin/Testimonials/Edit/'
+            title: myTitle + '/Admin/Testimonials/Edit/'
         },
         props: true
     },
@@ -142,7 +144,7 @@ const routes = [
         component: adminMessageIndex,
         meta: {
             requiresAuth:true,
-            title: 'Potrfolio/Admin/Messages'
+            title: myTitle + '/Admin/Messages'
         }
     },
     {
@@ -151,7 +153,7 @@ const routes = [
         component: adminUserIndex,
         meta: {
             requiresAuth:true,
-            title: 'Potrfolio/Admin/Users'
+            title: myTitle + '/Admin/Users'
         }
     },
     {
@@ -160,7 +162,7 @@ const routes = [
         component: adminUserProfile,
         meta: {
             requiresAuth:true,
-            title: 'Portfolio/Admin/User Profile'
+            title: myTitle + '/Admin/UserProfile'
         }
     },
 
@@ -172,7 +174,7 @@ const routes = [
         component: homePageIndex,
         meta: {
             requiresAuth:false,
-            title: 'Potrfolio'
+            title: myTitle
         }
     },
     //login
@@ -182,7 +184,7 @@ const routes = [
         component: login,
         meta: {
             requiresAuth:false,
-            title: 'Potrfolio/Login page'
+            title: myTitle + '/Login page'
         }
     },
     //notFound
@@ -192,7 +194,7 @@ const routes = [
         component: notFound,
         meta: {
             requiresAuth:false,
-            title: 'Potrfolio/404 page'
+            title: myTitle + '/404 page'
         }
     }
 ]
