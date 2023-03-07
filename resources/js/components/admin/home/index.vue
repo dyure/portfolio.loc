@@ -1,6 +1,7 @@
 <script setup>
     import { useRouter } from 'vue-router'
     import Base from '../layouts/base.vue'
+    import Chart from '../layouts/chart.vue'
     import { onMounted, ref } from 'vue'
 
     let skills = ref([])
@@ -86,8 +87,9 @@
                 <!-- Overview Page -->
                 <section class="overview" id="overview">
                     <div class="overview_left">
+                        <!-- Chart -->
                         <div class="overview_analyse">
-                            <canvas id="chart" width="1228" height="614" style="display: block; box-sizing: border-box; height: 614px; width: 100%;"></canvas>
+                            <Chart />
                         </div>
                         <div class="titlebar">
                             <div class="titlebar_item">

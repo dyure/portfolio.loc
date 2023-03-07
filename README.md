@@ -1,4 +1,4 @@
-10 feb 2023*********************************************************************************************
+10 feb 2023**********************************************\***********************************************
 Учебный пример (https://www.youtube.com/watch?v=okMYgBf7LaE&list=PLaXLjtW0Px1p_ecXxHy4Qdumib7nLCwlO&index=2)
 Установка ларавел:
 cd ~/sites
@@ -11,7 +11,7 @@ php artisan serve
 mysql -u root -p
 набрать пароль
 CREATE DATABASE portfolio;
-GRANT ALL PRIVILEGES ON portfolio.* TO 'portfolio_user'@'localhost' IDENTIFIED BY 1234Aa;
+GRANT ALL PRIVILEGES ON portfolio.\* TO 'portfolio_user'@'localhost' IDENTIFIED BY пароль;
 FLUSH PRIVILEGES;
 
 Занести данные о БД в файл .env
@@ -26,7 +26,7 @@ npm i @vitejs/plugin-vue --force --save-dev
 
 В каталоге resources/js/ создаем каталог components, а в нем файл app.vue
 
-12 feb 2023*********************************************************************************************
+12 feb 2023**********************************************\***********************************************
 to fix Error: laravel.log could not be opened
 sudo chmod -R 775 storage
 sudo chown -R $USER:www-data storage
@@ -41,7 +41,7 @@ sudo chown -R $USER:www-data storage
 в разделе "app" файла /app/Http/Kernel.php разкомментировать строку с классом "sanctum"
 создать контроллер: php artisan make:controller API/AuthController
 
-13 feb 2023*********************************************************************************************
+13 feb 2023**********************************************\***********************************************
 Создание страницы About
 php artisan make:model About -m
 дополнить файл /database/migrations/...abouts_table.php полями и выполнить миграцию: php artisan migrate
@@ -50,10 +50,11 @@ php artisan make:model About -m
 установить intervention/image: composer require intervention/image
 создать каталог /public/img/upload и изменить права и владельца этих каталогов (см. записи от 12 февраля)
 Ошибки:
+
 1. в контроллере AboutController.php не работает проверка на существование загруженного файла и поэтому отключена. загрузка файла, при этом работает.
 2. обновление остальных полей работает только если выбрать фото и cv
 
-15 feb 2023*********************************************************************************************
+15 feb 2023**********************************************\***********************************************
 Создание страницы Service
 создать модель: php artisan make:model Service -m
 дополнить файл /database/migrations/...services_table.php полями и выполнить миграцию: php artisan migrate (!)
@@ -61,7 +62,7 @@ php artisan make:model About -m
 скорректировать файл /database/seeders/DatabaseSeeder.php и запустить команду php artisan db:seed (!)
 создать контроллер: php artisan make:controller API/ServiceController
 
-17 feb 2023*********************************************************************************************
+17 feb 2023**********************************************\***********************************************
 Создание страницы Skills
 создать модель: php artisan make:model Skill -m
 дополнить файл /database/migrations/...skills_table.php полями и выполнить миграцию: php artisan migrate (!)
@@ -69,10 +70,10 @@ php artisan make:model About -m
 скорректировать файл /database/seeders/DatabaseSeeder.php и запустить команду php artisan db:seed (!)
 создать контроллер: php artisan make:controller API/SkillController
 
-20 feb 2023*********************************************************************************************
+20 feb 2023**********************************************\***********************************************
 Skills - создание нового
 
-21 feb 2023*********************************************************************************************
+21 feb 2023**********************************************\***********************************************
 Skills - обновление и удаление
 Создание страницы Educations
 создать модель: php artisan make:model Education -m
@@ -99,11 +100,11 @@ Experience - обновление и удаление
 скорректировать файл /database/seeders/DatabaseSeeder.php и запустить команду php artisan db:seed
 создать контроллер: php artisan make:controller API/ProjectController
 
-22 feb 2023*********************************************************************************************
+22 feb 2023**********************************************\***********************************************
 Project - создание нового
 Project - обновление и удаление
 
-23 feb 2023*********************************************************************************************
+23 feb 2023**********************************************\***********************************************
 Создание страницы Testimonial
 создать модель: php artisan make:model Testimonial -m
 дополнить файл /database/migrations/...testimonial_table.php полями и выполнить миграцию: php artisan migrate
@@ -111,11 +112,11 @@ Project - обновление и удаление
 скорректировать файл /database/seeders/DatabaseSeeder.php и запустить команду php artisan db:seed
 создать контроллер: php artisan make:controller API/TestimonialController
 
-26 feb 2023*********************************************************************************************
+26 feb 2023**********************************************\***********************************************
 Testimonial - создание нового
 Testimonial - обновление и удаление
 
-27 feb 2023*********************************************************************************************
+27 feb 2023**********************************************\***********************************************
 Создание страницы Message
 создать модель: php artisan make:model Message -m
 дополнить файл /database/migrations/...messages_table.php полями и выполнить миграцию: php artisan migrate
@@ -125,7 +126,7 @@ Testimonial - обновление и удаление
 
 Message - изменение статуса и удаление
 
-28 feb 2023*********************************************************************************************
+28 feb 2023**********************************************\***********************************************
 Создание страницы Users
 добавить поле Type к таблице Users: php artisan make:migration add_type_to_users_table
 дополнить файл /database/migrations/...add_type_to_users_table.php полем Type и выполнить миграцию: php artisan migrate
@@ -140,13 +141,17 @@ Users - обновление и удаление
 
 Создание страницы Profile
 
-1 mar 2023*********************************************************************************************
+1 mar 2023**********************************************\***********************************************
 Изменение мета-тэга <title>. В файле /resources/js/router/index.js в описание каждого компонента, в массив meta добавляем элемент title и, затем, в определении константы router добавляем строку document.title = to.meta.title
 
-добавление класса nav__active в файле /resources/js/components/admin/layouts/sidebar.vue в зависимости от выбранного пункта меню с помощью директивы active-class
+добавление класса nav\_\_active в файле /resources/js/components/admin/layouts/sidebar.vue в зависимости от выбранного пункта меню с помощью директивы active-class
 
 вывод списка services со связанными с ними skills в файле /resources/js/components/admin/home/index.vue
 
 вывод количества записей по разделам в файле /resources/js/components/admin/home/index.vue
 
 вывод списков Projects и Testimonials в файле /resources/js/components/admin/home/index.vue
+
+7 mar 2023**********************************************\***********************************************
+Вывод линейной диаграммы
+установить chartjs и vue-chartjs командой npm i vue-chartjs chart.js

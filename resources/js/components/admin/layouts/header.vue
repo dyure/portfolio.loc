@@ -32,7 +32,7 @@
             </div>
             <div class="header_profile" @click="openNavHeader">
                 <div class="header_profile-imgWrapper ">
-                    <img class="header_profile-img" src="" alt=""/>
+                    <img class="header_profile-img" src="/img/upload/avatar.jpg" alt=""/>
                 </div>
                 <p class="header_profile-name">
                     Zander Ford
